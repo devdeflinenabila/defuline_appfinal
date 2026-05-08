@@ -19,16 +19,67 @@ class MyApp extends StatelessWidget {
 class DeflineDashboard extends StatelessWidget {
   const DeflineDashboard({super.key});
 
+  static final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.cyan, Colors.purple, Colors.pinkAccent],
+                ),
+              ),
+              child: Text(
+                'MENU',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('SETTINGS'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: const Icon(Icons.person_search),
+              title: const Text('CONTACT US'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: const Icon(Icons.accessibility),
+              title: const Text('ABOUT'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: const Icon(Icons.comment),
+              title: const Text('USER AGREEMENT'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: const Icon(Icons.policy),
+              title: const Text('PRIVACY POLICY'),
+              onTap: () {
+                Navigator.pop(context);
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+              },
+            ),
+          ],
+        ),
+      ),
+
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.cyanAccent,Colors.purple,Colors.pinkAccent],
-            stops: [0.0, 0.5, 1.0 ],
+            colors: [Colors.cyanAccent, Colors.purple, Colors.pinkAccent],
+            stops: [0.0, 0.5, 1.0],
           ),
         ),
         child: SafeArea(
@@ -38,7 +89,12 @@ class DeflineDashboard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 child: Row(
                   children: [
-                    const Icon(Icons.menu, size: 30),
+                    IconButton(
+                      icon: const Icon(Icons.menu, size: 30, color: Colors.white),
+                      onPressed: () {
+                        _scaffoldKey.currentState?.openDrawer();
+                      },
+                    ),
                     const SizedBox(width: 10),
                     const Text(
                       'DEFLINE',
@@ -46,7 +102,7 @@ class DeflineDashboard extends StatelessWidget {
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic,
-                        color: Colors.yellow,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -69,6 +125,7 @@ class DeflineDashboard extends StatelessWidget {
 
               const SizedBox(height: 20),
 
+
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -80,33 +137,31 @@ class DeflineDashboard extends StatelessWidget {
                     children: [
                       const ListTile(
                         leading: CircleAvatar(
-
                           backgroundImage: AssetImage("asset/image/wls2.jpg"),
                         ),
-                        title: Text("KISAHGUA_1F", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                        subtitle: Text("@KISAHGUA__NIH", style: TextStyle(color: Colors.orange)),
+                        title: Text("KISAHGUA_1F",
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        subtitle: Text("@KISAHGUA__NIH",
+                            style: TextStyle(color: Colors.orange)),
                         trailing: Icon(Icons.music_note, color: Colors.black),
                       ),
-
-
                       Expanded(
                         child: ClipRRect(
                           child: Image.asset(
                             "asset/image/kisah2.jpg",
                             fit: BoxFit.cover,
                             width: double.infinity,
-
                             errorBuilder: (context, error, stackTrace) {
                               return Container(
                                 color: Colors.grey[300],
-                                child: const Center(child: Icon(Icons.broken_image, color: Colors.grey)),
+                                child: const Center(
+                                    child: Icon(Icons.broken_image, color: Colors.grey)
+                                ),
                               );
                             },
                           ),
                         ),
                       ),
-
-
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Row(
@@ -123,6 +178,7 @@ class DeflineDashboard extends StatelessWidget {
                 ),
               ),
 
+
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -130,7 +186,7 @@ class DeflineDashboard extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        const Icon(Icons.video_library , color: Colors.black, size: 40),
+                        const Icon(Icons.video_library, color: Colors.black, size: 40),
                         const SizedBox(height: 10),
                         FloatingActionButton(
                           onPressed: () {},
@@ -143,6 +199,7 @@ class DeflineDashboard extends StatelessWidget {
                 ),
               ),
 
+              // Custom Bottom Navigation Bar
               Container(
                 height: 70,
                 margin: const EdgeInsets.only(bottom: 10, left: 16, right: 16),
@@ -155,7 +212,7 @@ class DeflineDashboard extends StatelessWidget {
                   children: [
                     const Icon(Icons.home_filled, size: 30, color: Colors.yellow),
                     Container(
-                      width: 200,
+                      width: 180,
                       height: 40,
                       decoration: BoxDecoration(
                         color: Colors.white24,
@@ -170,8 +227,9 @@ class DeflineDashboard extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
-                      },
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()
+
+                        ),);},
                       icon: const Icon(Icons.person_outline, color: Colors.white, size: 30),
                     ),
                   ],
@@ -183,7 +241,6 @@ class DeflineDashboard extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildStoryItem(String imagePath, {bool isViewed = false}) {
     return Container(
@@ -206,7 +263,7 @@ class DeflineDashboard extends StatelessWidget {
         const Text("FOLLOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white)),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          decoration: BoxDecoration(color: Colors.orange, borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(color: Colors.pinkAccent, borderRadius: BorderRadius.circular(10)),
           child: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
         ),
       ],
