@@ -1,3 +1,4 @@
+import 'package:defuline_app/pages/realss_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -149,13 +150,15 @@ class ProfilePage extends StatelessWidget {
             right: 16,
             child: Column(
               children: [
-                const Icon(Icons.video_library, size: 40, color: Colors.black),
-                const SizedBox(height: 10),
-                FloatingActionButton(
-                  onPressed: () {},
-                  backgroundColor: Colors.pink,
-                  child: const Icon(Icons.add, size: 35, color: Colors.white),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RealssPage()));
+                  },
+                  icon: const Icon(Icons.video_library, color: Colors.white, size: 30),
                 ),
+                FloatingActionButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RealssPage()));
+                }, backgroundColor: Colors.pink, child: const Icon(Icons.add, color: Colors.white, size: 35)),
               ],
             ),
           ),
