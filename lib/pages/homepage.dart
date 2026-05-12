@@ -1,54 +1,74 @@
 import 'package:defuline_app/pages/profilpage.dart';
+import 'package:defuline_app/pages/realss_page.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: const DeflineDashboard(),
-    );
-  }
-}
-
-class DeflineDashboard extends StatelessWidget {
+class DeflineDashboard extends StatefulWidget {
   const DeflineDashboard({super.key});
 
-  static final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  State<DeflineDashboard> createState() => _DeflineDashboardState();
+}
+
+class _DeflineDashboardState extends State<DeflineDashboard> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool _isLiked = false;
+
+  void _showComments() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+      ),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(20),
+        height: 400,
+        child: Column(
+          children: [
+            Container(width: 50, height: 5, decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(10))),
+            const SizedBox(height: 20),
+            const Text("Komentar", style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
+            const Divider(),
+            Expanded(
+              child: ListView(
+                children: const [
+                  ListTile(
+                    leading: CircleAvatar(backgroundColor: Colors.blue),
+                    title: Text("User_A", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    subtitle: Text("Keren banget fotonya!", style: TextStyle(color: Colors.black54)),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(backgroundColor: Colors.green),
+                    title: Text("User_B", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    subtitle: Text("Lagi dimana ini kak?", style: TextStyle(color: Colors.black54)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.cyan, Colors.purple, Colors.pinkAccent],
-                ),
+                gradient: LinearGradient(colors: [Colors.cyan, Colors.purple, Colors.pinkAccent]),
               ),
-              child: Text(
-                'MENU',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
+              child: Text('MENU', style: TextStyle(color: Colors.white, fontSize: 24)),
             ),
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('SETTINGS'),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.person_search),
-              title: const Text('CONTACT US'),
               onTap: () => Navigator.pop(context),
             ),
             ListTile(
@@ -66,13 +86,12 @@ class DeflineDashboard extends StatelessWidget {
               title: const Text('PRIVACY POLICY'),
               onTap: () {
                 Navigator.pop(context);
-                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
               },
             ),
           ],
         ),
       ),
-
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -91,23 +110,14 @@ class DeflineDashboard extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.menu, size: 30, color: Colors.white),
-                      onPressed: () {
-                        _scaffoldKey.currentState?.openDrawer();
-                      },
+                      onPressed: () => _scaffoldKey.currentState?.openDrawer(),
                     ),
                     const SizedBox(width: 10),
-                    const Text(
-                      'DEFLINE',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                        color: Colors.white,
-                      ),
-                    ),
+                    const Text('DEFLINE', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, color: Colors.white)),
                   ],
                 ),
               ),
+
 
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -117,7 +127,6 @@ class DeflineDashboard extends StatelessWidget {
                     _buildStoryItem("asset/image/kisah3.jpg", isViewed: true),
                     _buildStoryItem("asset/image/kisah2.jpg"),
                     _buildStoryItem("asset/image/wls3.jpg"),
-                    const SizedBox(width: 10),
                     _buildFollowButton(),
                   ],
                 ),
@@ -125,51 +134,48 @@ class DeflineDashboard extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     children: [
                       const ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage("asset/image/wls2.jpg"),
-                        ),
-                        title: Text("KISAHGUA_1F",
-                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                        subtitle: Text("@KISAHGUA__NIH",
-                            style: TextStyle(color: Colors.orange)),
+                        leading: CircleAvatar(backgroundImage: AssetImage("asset/image/wls2.jpg")),
+                        title: Text("KISAHGUA_1F", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        subtitle: Text("@KISAHGUA__NIH", style: TextStyle(color: Colors.orange)),
                         trailing: Icon(Icons.music_note, color: Colors.black),
                       ),
                       Expanded(
                         child: ClipRRect(
-                          child: Image.asset(
-                            "asset/image/kisah2.jpg",
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: Colors.grey[300],
-                                child: const Center(
-                                    child: Icon(Icons.broken_image, color: Colors.grey)
-                                ),
-                              );
-                            },
-                          ),
+                          child: Image.asset("asset/image/kisah2.jpg", fit: BoxFit.cover, width: double.infinity),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+
+
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Icon(Icons.favorite, color: Colors.red, size: 30),
-                            SizedBox(width: 10),
-                            Icon(Icons.chat_bubble, color: Colors.pink, size: 30),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _isLiked = !_isLiked;
+                                });
+                              },
+                              child: Icon(
+                                _isLiked ? Icons.favorite : Icons.favorite_border,
+                                color: _isLiked ? Colors.red : Colors.pink,
+                                size: 35,
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+
+                            GestureDetector(
+                              onTap: _showComments,
+                              child: const Icon(Icons.chat, color: Colors.pink, size: 32),
+                            ),
                           ],
                         ),
                       ),
@@ -178,67 +184,73 @@ class DeflineDashboard extends StatelessWidget {
                 ),
               ),
 
-
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Column(
-                      children: [
-                        const Icon(Icons.video_library, color: Colors.black, size: 40),
-                        const SizedBox(height: 10),
-                        FloatingActionButton(
-                          onPressed: () {},
-                          backgroundColor: Colors.pink,
-                          child: const Icon(Icons.add, color: Colors.white, size: 35),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              // Custom Bottom Navigation Bar
-              Container(
-                height: 70,
-                margin: const EdgeInsets.only(bottom: 10, left: 16, right: 16),
-                decoration: BoxDecoration(
-                  color: Colors.black26,
-                  borderRadius: BorderRadius.circular(35),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Icon(Icons.home_filled, size: 30, color: Colors.yellow),
-                    Container(
-                      width: 180,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white24,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Row(
-                        children: [
-                          SizedBox(width: 15),
-                          Icon(Icons.search, color: Colors.white),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()
-
-                        ),);},
-                      icon: const Icon(Icons.person_outline, color: Colors.white, size: 30),
-                    ),
-                  ],
-                ),
-              ),
+              _buildBottomSection(context),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildBottomSection(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const RealssPage()));
+                    },
+                    icon: const Icon(Icons.video_library, color: Colors.white, size: 30),
+                  ),
+                  FloatingActionButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RealssPage()));
+                  }, backgroundColor: Colors.pink, child: const Icon(Icons.add, color: Colors.white, size: 35)),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 70,
+          margin: const EdgeInsets.only(bottom: 10, left: 16, right: 16),
+          decoration: BoxDecoration(
+            color: Colors.black26,
+            borderRadius: BorderRadius.circular(35),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Icon(Icons.home_filled, size: 30, color: Colors.yellow),
+                Container(
+                  width: 200,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white24,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Row(
+                    children: [
+                      SizedBox(width: 15),
+                      Icon(Icons.search, color: Colors.white),
+                    ],
+                  ),
+                ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+                },
+                icon: const Icon(Icons.person_outline, color: Colors.white, size: 30),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -263,7 +275,7 @@ class DeflineDashboard extends StatelessWidget {
         const Text("FOLLOW", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Colors.white)),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          decoration: BoxDecoration(color: Colors.pinkAccent, borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(color: Colors.orange, borderRadius: BorderRadius.circular(10)),
           child: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
         ),
       ],

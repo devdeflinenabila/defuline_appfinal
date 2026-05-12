@@ -149,7 +149,7 @@ class ProfilePage extends StatelessWidget {
             right: 16,
             child: Column(
               children: [
-                const Icon(Icons.ondemand_video, size: 40, color: Colors.black),
+                const Icon(Icons.video_library, size: 40, color: Colors.black),
                 const SizedBox(height: 10),
                 FloatingActionButton(
                   onPressed: () {},
