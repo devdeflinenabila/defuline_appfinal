@@ -1,9 +1,16 @@
 import 'package:defuline_app/pages/realss_page.dart';
+import 'package:defuline_app/pages/search.dart';
+import 'package:defuline_app/pages/settinggs.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class Profilpage extends StatefulWidget {
+  const Profilpage({super.key});
 
+  @override
+  State<Profilpage> createState() => _ProfilpageState();
+}
+
+class _ProfilpageState extends State<Profilpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,8 +57,19 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.settings, size: 30, color: Colors.white),
-            onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsApp(),
+                  ),
+                );
+              },
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.white,
+              size: 30,
+            ),
           ),
         ],
       ),
@@ -163,13 +181,31 @@ class ProfilePage extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RealssPage()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RealssPage(),
+                      ),
+                    );
                   },
-                  icon: const Icon(Icons.video_library, color: Colors.white, size: 30),
+                  icon: const Icon(
+                    Icons.video_library,
+                    color: Colors.white,
+                    size: 30,
+                  ),
                 ),
-                FloatingActionButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const RealssPage()));
-                }, backgroundColor: Colors.pink, child: const Icon(Icons.add, color: Colors.white, size: 35)),
+                FloatingActionButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RealssPage(),
+                      ),
+                    );
+                  },
+                  backgroundColor: Colors.pink,
+                  child: const Icon(Icons.add, color: Colors.white, size: 35),
+                ),
               ],
             ),
           ),
@@ -209,10 +245,23 @@ class ProfilePage extends StatelessWidget {
               color: Colors.white24,
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const Row(
+            child: Row(
               children: [
-                SizedBox(width: 15),
-                Icon(Icons.search, color: Colors.white),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchAccountPage(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.search_rounded,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
               ],
             ),
           ),
@@ -226,7 +275,7 @@ class ProfilePage extends StatelessWidget {
               if (!isProfileActive) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                  MaterialPageRoute(builder: (context) => const Profilpage()),
                 );
               }
             },

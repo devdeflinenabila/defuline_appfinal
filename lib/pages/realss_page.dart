@@ -1,5 +1,6 @@
 import 'package:defuline_app/pages/homepage.dart';
-import 'package:defuline_app/pages/profilpage.dart' show ProfilePage;
+import 'package:defuline_app/pages/profilpage.dart' show ProfilePage, Profilpage;
+import 'package:defuline_app/pages/search.dart';
 import 'package:flutter/material.dart';
 
 // Pastikan file ini ada di project kamu, jika belum ada silakan buat atau sesuaikan namanya
@@ -216,43 +217,36 @@ class _RealssPageState extends State<RealssPage> {
                           );
                         },
                         icon: const Icon(
-                          Icons.home,
+                          Icons.home_filled,
                           color: Colors.white,
                           size: 28,
                         ),
                       ),
-
-                      // TOMBOL SEARCH DENGAN IKON DI KIRI & TEKS DI TENGAH
-                      GestureDetector(
-                        onTap: () {
-                          // Aksi pencarian
-                        },
-                        child: Container(
-                          width: screenWidth * 0.4,
-                          // Lebar sedikit ditambah agar teks leluasa
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white24,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            // Ini yang membuat ikon & teks berada di tengah container
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(Icons.search, color: Colors.white, size: 18),
-                              SizedBox(width: 8), // Jarak antara ikon dan teks
-                              Text(
-                                'Search',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                ),
+                      Container(
+                        width: 200,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white24,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SearchAccountPage(),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.search_rounded,
+                                color: Colors.white,
+                                size: 30,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
 
@@ -262,7 +256,7 @@ class _RealssPageState extends State<RealssPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ProfilePage(),
+                              builder: (context) => const Profilpage(),
                             ),
                           );
                         },

@@ -34,9 +34,6 @@ class _SearchAccountPageState extends State<SearchAccountPage> {
       results = _allAccounts
           .where(
             (user) =>
-                user["name"]!.toLowerCase().contains(
-                  enteredKeyword.toLowerCase(),
-                ) ||
                 user["username"]!.toLowerCase().contains(
                   enteredKeyword.toLowerCase(),
                 ),
@@ -60,7 +57,7 @@ class _SearchAccountPageState extends State<SearchAccountPage> {
             TextField(
               onChanged: (value) => _runFilter(value),
               decoration: const InputDecoration(
-                labelText: 'Cari Nama atau Username',
+                labelText: 'Cari Username',
                 suffixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
