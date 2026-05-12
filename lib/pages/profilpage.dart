@@ -33,7 +33,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-
   Widget _buildProfileHeader() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -81,7 +80,11 @@ class ProfilePage extends StatelessWidget {
             children: [
               Text(
                 "DEFADMIN",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
               Text("@defmin", style: TextStyle(color: Colors.white70)),
             ],
@@ -97,8 +100,14 @@ class ProfilePage extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Mengikuti", style: TextStyle(fontSize: 14, color: Colors.white)),
-            Text("Pengikut", style: TextStyle(fontSize: 14, color: Colors.white)),
+            Text(
+              "Mengikuti",
+              style: TextStyle(fontSize: 14, color: Colors.white),
+            ),
+            Text(
+              "Pengikut",
+              style: TextStyle(fontSize: 14, color: Colors.white),
+            ),
           ],
         ),
         SizedBox(height: 20),
@@ -114,7 +123,6 @@ class ProfilePage extends StatelessWidget {
       ],
     );
   }
-
 
   Widget _buildProfileContent(BuildContext context) {
     return Expanded(
@@ -136,7 +144,10 @@ class ProfilePage extends StatelessWidget {
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return const Center(
-                      child: Icon(Icons.image_not_supported, color: Colors.white24),
+                      child: Icon(
+                        Icons.image_not_supported,
+                        color: Colors.white24,
+                      ),
                     );
                   },
                 ),
@@ -164,7 +175,10 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomNav(BuildContext context, {required bool isProfileActive}) {
+  Widget _buildBottomNav(
+    BuildContext context, {
+    required bool isProfileActive,
+  }) {
     return Container(
       height: 70,
       margin: const EdgeInsets.only(bottom: 10, left: 16, right: 16),
@@ -206,7 +220,6 @@ class ProfilePage extends StatelessWidget {
               color: isProfileActive ? Colors.yellow : Colors.white,
             ),
             onPressed: () {
-
               if (!isProfileActive) {
                 Navigator.push(
                   context,
