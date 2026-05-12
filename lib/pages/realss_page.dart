@@ -45,7 +45,11 @@ class _RealssPageState extends State<RealssPage> {
                       errorBuilder: (context, error, stackTrace) => Container(
                         color: Colors.black.withOpacity(0.8),
                         child: const Center(
-                          child: Icon(Icons.broken_image, color: Colors.white, size: 50),
+                          child: Icon(
+                            Icons.broken_image,
+                            color: Colors.white,
+                            size: 50,
+                          ),
                         ),
                       ),
                     ),
@@ -59,7 +63,11 @@ class _RealssPageState extends State<RealssPage> {
                 left: 20,
                 child: Row(
                   children: const [
-                    Icon(Icons.video_library, color: Colors.pinkAccent, size: 18),
+                    Icon(
+                      Icons.video_library,
+                      color: Colors.pinkAccent,
+                      size: 18,
+                    ),
                     SizedBox(width: 10),
                     Text(
                       'REELS LINE',
@@ -79,7 +87,10 @@ class _RealssPageState extends State<RealssPage> {
                 right: 15,
                 top: screenHeight * 0.25,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.25),
                     borderRadius: BorderRadius.circular(30),
@@ -105,9 +116,17 @@ class _RealssPageState extends State<RealssPage> {
                       const SizedBox(height: 15),
                       const Icon(Icons.chat, color: Colors.white, size: 26),
                       const SizedBox(height: 15),
-                      const Icon(Icons.share_outlined, color: Colors.black, size: 26),
+                      const Icon(
+                        Icons.share_outlined,
+                        color: Colors.black,
+                        size: 26,
+                      ),
                       const SizedBox(height: 15),
-                      const Icon(Icons.more_horiz, color: Colors.black, size: 26),
+                      const Icon(
+                        Icons.more_horiz,
+                        color: Colors.black,
+                        size: 26,
+                      ),
                     ],
                   ),
                 ),
@@ -122,20 +141,31 @@ class _RealssPageState extends State<RealssPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black54,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: const Text(
                         "FADLI _ MODESAD",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 8),
                     const Text(
                       "Lebih baik sadar diri daripada berjuang tapi tidak dihargai\n#fyppppp #sadardiri",
-                      style: TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        height: 1.3,
+                      ),
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -160,6 +190,7 @@ class _RealssPageState extends State<RealssPage> {
               ),
 
               // 6. Navigation Bar (Home, Search, Profile)
+              // 6. Navigation Bar (Home, Search, Profile)
               Positioned(
                 bottom: 15,
                 left: 15,
@@ -177,40 +208,69 @@ class _RealssPageState extends State<RealssPage> {
                       // Tombol Home
                       IconButton(
                         onPressed: () {
-                           Navigator.push(context, MaterialPageRoute(builder: (context) => const DeflineDashboard()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DeflineDashboard(),
+                            ),
+                          );
                         },
-                        icon: const Icon(Icons.home, color: Colors.white, size: 28),
+                        icon: const Icon(
+                          Icons.home,
+                          color: Colors.white,
+                          size: 28,
+                        ),
                       ),
 
-                      // Tombol Search (Tengah)
+                      // TOMBOL SEARCH DENGAN IKON DI KIRI & TEKS DI TENGAH
                       GestureDetector(
                         onTap: () {
                           // Aksi pencarian
                         },
                         child: Container(
-                          width: screenWidth * 0.35, // Lebar dinamis
-                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                          width: screenWidth * 0.4,
+                          // Lebar sedikit ditambah agar teks leluasa
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white24,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(
+                            // Ini yang membuat ikon & teks berada di tengah container
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(Icons.search, color: Colors.white, size: 18),
-                              SizedBox(width: 8),
-                              Text("Search", style: TextStyle(color: Colors.white, fontSize: 14)),
+                              SizedBox(width: 8), // Jarak antara ikon dan teks
+                              Text(
+                                'Search',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
                             ],
                           ),
                         ),
                       ),
 
-                      // Tombol Profil
+                      // Tombol Profile
                       IconButton(
                         onPressed: () {
-                           Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ProfilePage(),
+                            ),
+                          );
                         },
-                        icon: const Icon(Icons.person_outline, color: Colors.white, size: 28),
+                        icon: const Icon(
+                          Icons.person,
+                          color: Colors.white,
+                          size: 28,
+                        ),
                       ),
                     ],
                   ),
