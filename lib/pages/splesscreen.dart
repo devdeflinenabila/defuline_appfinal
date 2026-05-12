@@ -32,11 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFDEFF9),
-              Color(0xFFEC38BC),
-              Color(0xFF7303C0),
-            ],
+            colors: [Color(0xFFFDEFF9), Color(0xFFEC38BC), Color(0xFF7303C0)],
           ),
         ),
         child: Column(
@@ -48,14 +44,13 @@ class _SplashScreenState extends State<SplashScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 image: const DecorationImage(
-
                   image: AssetImage('asset/image/logodefline.png'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             const SizedBox(height: 20),
-           
+
             const Text(
               'DEFLINE',
               style: TextStyle(
